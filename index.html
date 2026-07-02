@@ -756,7 +756,7 @@ function gen(){
 let c="ABCDEFGHJKLMNPQRSTUVWXYZ123456789";
 captcha="";
 for(let i=0;i<7;i++)captcha+=c[Math.floor(Math.random()*c.length)];
-document.getElementById("captchaBox").innerText="CAPTCHA: "+captcha;
+document.getElementById("captchaBox").innerText="CAPTCHA : "+captcha;
 }
 gen();
 let recoveryCaptcha="";
@@ -774,7 +774,7 @@ recoveryCaptcha += chars[Math.floor(Math.random()*chars.length)];
 }
 
 document.getElementById("recoveryCaptchaBox").innerText =
-"CAPTCHA: " + recoveryCaptcha;
+"CAPTCHA : " + recoveryCaptcha;
 
 }
 
