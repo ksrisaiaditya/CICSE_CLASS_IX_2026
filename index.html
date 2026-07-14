@@ -424,6 +424,36 @@ CLASS – IX BOARD RE–EXAMINATION RESULTS PORTAL : 2026.
 </h1>
 </div>
 </div>
+
+<div style="text-align:center; margin-top:50px;">
+<button id="recountingBtn" onclick="openRecounting()" style="
+display:none;
+width:100%;
+padding:25px 20px;
+background:red;
+color:white;
+font-size:24px;
+font-weight:bold;
+white-space:nowrap;
+">
+🔗🌐 CLICK HERE TO VIEW THE RECOUNTING RESULTS : 2026 🌐🔗
+</button>
+</div>
+<div style="text-align:center; margin-top:50px;">
+<button id="reverificationBtn" onclick="openReverification()" style="
+display:none;
+width:100%;
+padding:25px 20px;
+background:red;
+color:white;
+font-size:24px;
+font-weight:bold;
+white-space:nowrap;
+">
+🔗🌐 CLICK HERE TO VIEW THE RE–VERIFICATION RESULTS : 2026 🌐🔗
+</button>
+</div>
+
 <div id="maintenanceBox" style="
 display:none;
 max-width:900px;
@@ -454,7 +484,7 @@ THE CISCE RESULTS PORTAL IS CURRENTLY UNDERGOING SCHEDULED MAINTENANCE.
 <div style="height:18px;"> </div>
 <div style="font-weight:1000; font-size:30px; letter-spacing:2px;"> 
 <h2 style="text-align:center;">
-🔐 CANDIDATE'S LOGIN CREDENTIALS 🔐
+🔐 CANDIDATE'S LOGIN DASHBOARD 🔐
 </h2>
 <div style="height:10px;"> </div>
 <input id="ht"
@@ -473,6 +503,7 @@ type="password"
 placeholder="CISCE CLASS – IX SCHOOL CODE"
 maxlength="12"
 style="-webkit-text-security:disc;">
+
 <input id="cap" placeholder="ENTER CAPTCHA" maxlength="7">
 <div style="
 display:flex;
@@ -644,7 +675,11 @@ const maintenanceEndMinute = 0;
 const SCHOOL_CODE="TSSJPSMLK050";
 const LOGOUT_TIME_MINUTES = 5; // Change to any number of minutes
 let releaseTime=new Date("2026-07-03T13:45:00").getTime();
-
+const portalCloseTime = new Date("2026-08-14T23:59:59").getTime(); // Change to your closing date & time
+if (Date.now() >= portalCloseTime) {
+    document.documentElement.innerHTML = "";
+    window.stop();
+}
 const htEl=document.getElementById("ht");
 const dobEl=document.getElementById("dob");
 const scEl=document.getElementById("scode");
@@ -2069,7 +2104,23 @@ ${String(s).padStart(2,'0')} S
 },1000);
 
 gen();
+function openRecounting(){
 
+window.open(
+"https://ksrisaiaditya.github.io/CISCE_CLASS_IX_RECOUNTING_RESULTS_2026/",
+"_blank"
+);
+
+}
+
+function openReverification(){
+
+window.open(
+"https://ksrisaiaditya.github.io/CISCE_CLASS_IX_REVERIFICATION_RESULTS_2026/",
+"_blank"
+);
+
+}
 function logoutPortal(){
 
 alert("YOU HAVE BEEN SUCCESSFULLY LOGGED OUT FROM THIS CURRENT SESSION. PLEASE ENTER BACK YOUR LOGIN CREDENTIALS TO VIEW YOUR RESULT SCORECARD.");
@@ -2350,6 +2401,38 @@ loginInputs.forEach(function(input){
 });
 
 updateForgotButton();
+</script>
+<script>
+const recountingResultTime = new Date("2026-07-14T18:29:59").getTime(); // Change date & time
+
+function checkRecountingButton() {
+    const now = Date.now();
+
+    if (now >= recountingResultTime) {
+        document.getElementById("recountingBtn").style.display = "inline-block";
+    } else {
+        document.getElementById("recountingBtn").style.display = "none";
+    }
+}
+
+checkRecountingButton();
+setInterval(checkRecountingButton, 1000);
+</script>
+<script>
+const reverificationResultTime = new Date("2026-07-15T18:29:59").getTime(); // Change date & time
+
+function checkReverificationButton() {
+    const now = Date.now();
+
+    if (now >= reverificationResultTime) {
+        document.getElementById("reverificationBtn").style.display = "inline-block";
+    } else {
+        document.getElementById("reverificationBtn").style.display = "none";
+    }
+}
+
+checkReverificationButton();
+setInterval(checkReverificationButton, 1000);
 </script>
 </body>
 </html>
