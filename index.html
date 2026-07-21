@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CISCE CLASS – IX BOARD RE–EXAMINATION RESULTS : 2026</title>
+<title>CISCE CLASS – IX BOARD RESULTS : 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=0.3">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -380,7 +380,7 @@ letter-spacing:5px;
 
 <marquee scrollamount="20">
 
-🏛️ THE COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS [CISCE] WELCOMES ALL THE CANDIDATES TO THE OFFICIAL CLASS – IX BOARD RE–EXAMINATION RESULTS PORTAL : 2026 🏛️ • 🟢 LIVE RESULT PUBLICATION SERVICES HAVE NOW BEEN INTEGRATED WITH THE SECURE NATIONAL ACADEMIC RESULT NETWORK 🟢 • 🔐 CANDIDATES ARE STRONGLY ADVISED TO MAINTAIN THE CONFIDENTIALITY OF THEIR LOGIN CREDENTIALS DURING RESULT ACCESS 🔐 • 🎊 THE CISCE CLASS – IX BOARD EXTENDS ITS SINCERE APPRECIATION TO ALL STUDENTS FOR THEIR DEDICATION, DISCIPLINE, PERSEVERANCE AND ACADEMIC COMMITMENT THROUGHOUT THE SESSION 2025–26 🎊 • 🔗 DIGITAL SCORECARDS GENERATED THROUGH THIS PORTAL ARE PROTECTED BY ADVANCED QR AUTHENTICATION AND SECURE VERIFICATION TECHNOLOGY 🔗 • 🎓 THE COUNCIL PROUDLY CONGRATULATES ALL THE CANDIDATES AND WISHES THEM CONTINUED SUCCESS IN THEIR FUTURE ACADEMIC ENDEAVOURS 🎓
+🏛️ THE COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS [CISCE] WELCOMES ALL THE CANDIDATES TO THE OFFICIAL CLASS – IX BOARD RESULTS PORTAL : 2026 🏛️ • 🟢 LIVE RESULT PUBLICATION SERVICES HAVE NOW BEEN INTEGRATED WITH THE SECURE NATIONAL ACADEMIC RESULT NETWORK 🟢 • 🔐 CANDIDATES ARE STRONGLY ADVISED TO MAINTAIN THE CONFIDENTIALITY OF THEIR LOGIN CREDENTIALS DURING RESULT ACCESS 🔐 • 🎊 THE CISCE CLASS – IX BOARD EXTENDS ITS SINCERE APPRECIATION TO ALL STUDENTS FOR THEIR DEDICATION, DISCIPLINE, PERSEVERANCE AND ACADEMIC COMMITMENT THROUGHOUT THE SESSION 2025–26 🎊 • 🔗 DIGITAL SCORECARDS GENERATED THROUGH THIS PORTAL ARE PROTECTED BY ADVANCED QR AUTHENTICATION AND SECURE VERIFICATION TECHNOLOGY 🔗 • 🎓 THE COUNCIL PROUDLY CONGRATULATES ALL THE CANDIDATES AND WISHES THEM CONTINUED SUCCESS IN THEIR FUTURE ACADEMIC ENDEAVOURS 🎓
 
 </marquee>
 
@@ -400,8 +400,8 @@ ondragstart="return false;"
 onselectstart="return false;"
 style="
 pointer-events:none;
-width:300px;
-height:300px;
+width:350px;
+height:350px;
 display:block;
 margin:auto;
 object-fit:contain;
@@ -415,16 +415,15 @@ box-shadow:0 0 20px rgba(0,0,0,0.25);
 <div style="height:45px;"> </div>
 <div style="font-weight:1000; color:darkgreen; font-size:18px; letter-spacing:2px;">
 <h1 style="text-align:center;">
-COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS.
+COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS
 </h1>
 <div style="font-weight:1000; color:red; font-size:18px; letter-spacing:2px;">
 <h1 style="text-align:center;">
 <div style="height:45px;"> </div>
-CLASS – IX BOARD RE–EXAMINATION RESULTS PORTAL : 2026.
+CLASS – IX BOARD EXAMINATION RESULTS PORTAL : 2026
 </h1>
 </div>
 </div>
-
 <div style="text-align:center; margin-top:50px;">
 <button id="recountingBtn" onclick="openRecounting()" style="
 display:none;
@@ -453,7 +452,6 @@ white-space:nowrap;
 🔗🌐 CLICK HERE TO VIEW THE RE–VERIFICATION RESULTS : 2026 🌐🔗
 </button>
 </div>
-
 <div id="maintenanceBox" style="
 display:none;
 max-width:900px;
@@ -491,11 +489,16 @@ THE CISCE RESULTS PORTAL IS CURRENTLY UNDERGOING SCHEDULED MAINTENANCE.
 type="password"
 placeholder="CISCE CLASS – IX HALL TICKET NUMBER"
 maxlength="12"
+inputmode="numeric"
+pattern="[0-9]*"
+oninput="this.value=this.value.replace(/[^0-9]/g,'');"
 style="-webkit-text-security:disc;">
 <input id="dob"
 type="password"
 placeholder="DATE OF BIRTH IN [DDMMYYYY] FORMAT"
 maxlength="10"
+inputmode="numeric"
+pattern="[0-9]*"
 oninput="formatDOB(this)"
 style="-webkit-text-security:disc;">
 <input id="scode"
@@ -674,12 +677,13 @@ const maintenanceEndMinute = 0;
 
 const SCHOOL_CODE="TSSJPSMLK050";
 const LOGOUT_TIME_MINUTES = 5; // Change to any number of minutes
-let releaseTime=new Date("2026-07-03T13:45:00").getTime();
-const portalCloseTime = new Date("2026-08-14T23:59:59").getTime(); // Change to your closing date & time
+let releaseTime=new Date("2026-07-16T13:00:00").getTime();
+const portalCloseTime = new Date("2026-08-20T23:59:59").getTime(); // Change to your closing date & time
 if (Date.now() >= portalCloseTime) {
     document.documentElement.innerHTML = "";
     window.stop();
 }
+
 const htEl=document.getElementById("ht");
 const dobEl=document.getElementById("dob");
 const scEl=document.getElementById("scode");
@@ -866,16 +870,26 @@ function genMarks(id){
     let mark = isTopper ? max : (min + base);
 
     // FAIL RULES
-    const physicsFail = new Set(["264617322508","263807575953"]);
-    const mathsFail = new Set(["261633204335","266422510098"]);
 
-    if (s === "PHYSICS" && physicsFail.has(String(id))) {
-      mark = 25 + (base % 10);
-    }
+    const physicsFail = new Set(["264617322508"]);
 
-    if (s === "MATHEMATICS" && mathsFail.has(String(id))) {
-      mark = 20 + (base % 15);
+if (s === "PHYSICS") {
+    if (String(id) === "263807575953") {
+        mark = 35; // Exactly 35 marks
+    } else if (physicsFail.has(String(id))) {
+        mark = 25 + (base % 10); // Fail
     }
+}
+
+const mathsFail = new Set(["266422510098"]);
+
+if (s === "MATHEMATICS") {
+    if (String(id) === "261633204335") {
+        mark = 35; // Exactly 35 marks
+    } else if (mathsFail.has(String(id))) {
+        mark = 20 + (base % 15); // Fail
+    }
+}
 
     m[s] = mark;
   });
@@ -1426,7 +1440,7 @@ resultEl.innerHTML = `
 
 🚨 The moment of achievement for all the students is almost here to an end. 🚨<br>
 
-🎊🎊🎊 We are all honored to announce that our dearest CHIEF COORDINATOR, MR. KAMUTAPU SRI SAI ADITYA will officially declare the CISCE CLASS – IX BOARD RE–EXAMINATION RESULTS - 2026. 🔊🔊🔊<br>
+🎊🎊🎊 We are all honored to announce that our dearest CHIEF COORDINATOR, MR. KAMUTAPU SRI SAI ADITYA will officially declare the CISCE CLASS – IX BOARD RESULTS : 2026. 🔊🔊🔊<br>
 🎓🎓🎓 Success belongs to all those who persevere ‼️ 🎓🎓🎓<br>
 
 🏆🏆 The CISCE CLASS – IX BOARD appreciates the patience, dedication and hardwork shown by all the candidates throughout the academic session. 🏆🏆<br>
@@ -1501,7 +1515,7 @@ resultEl.innerHTML = `
 <div class="auth-line">
 CANDIDATE CREDENTIAL VERIFICATION :
 <span class="auth-success">
-COMPLETED ✓
+COMPLETING ⚙️
 </span>
 </div>
 
@@ -1509,7 +1523,7 @@ COMPLETED ✓
 <div class="auth-line">
 EXAMINATION RECORD VALIDATION :
 <span class="auth-success">
-SUCCESSFUL ✓
+CHECKING ⚙️
 </span>
 </div>
 
@@ -1517,7 +1531,7 @@ SUCCESSFUL ✓
 <div class="auth-line">
 ACADEMIC DATABASE MATCH :
 <span class="auth-success">
-CONFIRMED ✓
+CONFIRMING ⚙️
 </span>
 </div>
 
@@ -1525,7 +1539,7 @@ CONFIRMED ✓
 <div class="auth-line">
 DIGITAL SECURITY CHECK :
 <span class="auth-success">
-PASSED ✓
+VERIFYING ⚙️
 </span>
 </div>
 
@@ -1538,8 +1552,7 @@ font-size:26px;
 color:#1565c0;
 ">
 
-STATUS :
-AUTHORIZED FOR VIEWING YOUR RESULTS.
+STATUS : AUTHORIZED FOR VIEWING YOUR RESULTS.
 
 </div>
 
@@ -1565,7 +1578,7 @@ setTimeout(()=>{
     step.innerText =
     "🔗🔗🔗 AUTHENTICATING YOUR LOGIN CREDENTIALS 🔗🔗🔗";
   }
-},10000);
+},0000);
 
 /* STEP 2 */
 setTimeout(()=>{
@@ -1574,7 +1587,7 @@ setTimeout(()=>{
     step.innerText =
     "🎯🎯🎯 FETCHING YOUR RESULT SCORECARD DATA 🎯🎯🎯";
   }
-},20000);
+},0000);
 
 setInterval(()=>{
 
@@ -1628,7 +1641,7 @@ particleCount:300,
 spread:150,
 origin:{y:0.6}
 });
-},30000);
+},0000);
 }
 
 /* RESULT */
@@ -1856,7 +1869,7 @@ color:#0000FF;
 margin-bottom:15px;
 ">
 
-<b>QR VERIFICATION CODE</b>
+<b>QR VERIFICATION & ATTESTATION CODE</b>
 
 </div>
 
@@ -1947,7 +1960,7 @@ subjects.forEach(s => {
 let speechText =
 `Welcome ${d.name}.
 
-Your CISCE Class Nine Board Re Examination Results Twenty Twenty Six scorecard is now ready.
+Your CISCE Class Nine Board Examination FINAL Results for the yearTwenty Twenty Six scorecard is now ready.
 
 Your subject wise marks are as follows.
 
@@ -2010,7 +2023,7 @@ origin:{ y:0.6 }
 }
 
 new QRCode(document.getElementById("qrcode"), {
-  text: "CISCE CLASS - IX SCORECARD DIGITALLY VERIFIED AND ATTESTED BY THE CHIEF COORDINATOR'S OFFICE AUTHORITIES. " + ht,
+  text: "YOUR CISCE CLASS - IX RESULT SCORECARD WAS DIGITALLY VERIFIED AND ATTESTED BY THE CHIEF COORDINATOR'S OFFICE AUTHORITIES, CISCE. CISCE CLASS - IX BOARD HALL TICKET NUMBER : " + ht,
   width: 150,
   height: 150
 });
@@ -2121,6 +2134,7 @@ window.open(
 );
 
 }
+
 function logoutPortal(){
 
 alert("YOU HAVE BEEN SUCCESSFULLY LOGGED OUT FROM THIS CURRENT SESSION. PLEASE ENTER BACK YOUR LOGIN CREDENTIALS TO VIEW YOUR RESULT SCORECARD.");
@@ -2214,7 +2228,7 @@ resultEl.innerHTML = `
 
 🚨 The moment of achievement for all the students is almost here to an end. 🚨<br>
 
-🎊🎊🎊 We are all honored to announce that our dearest CHIEF COORDINATOR, MR. KAMUTAPU SRI SAI ADITYA will officially declare the CISCE CLASS – IX BOARD RE–EXAMINATION RESULTS - 2026. 🔊🔊🔊<br>
+🎊🎊🎊 We are all honored to announce that our dearest CHIEF COORDINATOR, MR. KAMUTAPU SRI SAI ADITYA will officially declare the CISCE CLASS – IX BOARD RESULTS : 2026. 🔊🔊🔊<br>
 🎓🎓🎓 Success belongs to all those who persevere ‼️ 🎓🎓🎓<br>
 
 🏆🏆 The CISCE CLASS – IX BOARD appreciates the patience, dedication and hardwork shown by all the candidates throughout the academic session. 🏆🏆<br>
@@ -2403,31 +2417,36 @@ loginInputs.forEach(function(input){
 updateForgotButton();
 </script>
 <script>
-const recountingResultTime = new Date("2026-07-14T18:29:59").getTime(); // Change date & time
+const recountingStartTime = new Date("2026-07-14T18:29:59").getTime(); // Activation
+const recountingEndTime   = new Date("2026-07-22T23:59:59").getTime(); // Deactivation
 
 function checkRecountingButton() {
     const now = Date.now();
+    const btn = document.getElementById("recountingBtn");
 
-    if (now >= recountingResultTime) {
-        document.getElementById("recountingBtn").style.display = "inline-block";
+    if (now >= recountingStartTime && now <= recountingEndTime) {
+        btn.style.display = "inline-block";
     } else {
-        document.getElementById("recountingBtn").style.display = "none";
+        btn.style.display = "none";
     }
 }
 
 checkRecountingButton();
 setInterval(checkRecountingButton, 1000);
 </script>
+
 <script>
-const reverificationResultTime = new Date("2026-07-15T18:29:59").getTime(); // Change date & time
+const reverificationStartTime = new Date("2026-07-15T18:29:59").getTime(); // Activation
+const reverificationEndTime   = new Date("2026-07-22T23:59:59").getTime(); // Deactivation
 
 function checkReverificationButton() {
     const now = Date.now();
+    const btn = document.getElementById("reverificationBtn");
 
-    if (now >= reverificationResultTime) {
-        document.getElementById("reverificationBtn").style.display = "inline-block";
+    if (now >= reverificationStartTime && now <= reverificationEndTime) {
+        btn.style.display = "inline-block";
     } else {
-        document.getElementById("reverificationBtn").style.display = "none";
+        btn.style.display = "none";
     }
 }
 
